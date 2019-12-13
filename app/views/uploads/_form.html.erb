@@ -1,0 +1,41 @@
+<%= form_with(model: upload, local: true) do |form| %>
+  <% if upload.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(upload.errors.count, "error") %> šo failu neizdevās augšupielādēt:</h2>
+
+      <ul>
+        <% upload.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nosaukums %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :augšuplāde %>
+    <%= form.file_field :files, multiple: true  %>
+
+  </div>
+  <% if @upload.files_blobs.present? %>
+    <div class="field">
+      <%= form.label :pievienotie_faili %>
+      <% @upload.files.each do |upload| %>
+        <%= upload.blob.filename.to_s %>
+        <%= link_to 'Dzēst', delete_file_attachment_upload_url(upload.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :apraksts %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Pievienot', class: 'btn btn-success' %>
+  </div>
+<% end %>

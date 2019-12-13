@@ -1,0 +1,18 @@
+<p id='alert'><%= alert %></p>
+<h1>Pieslēgties</h1>
+<%= form_tag sessions_path do |form| %>
+  <div class='field'>
+    <%= label_tag :lietotājvārds %>
+    <%= text_field_tag :username %>
+  </div>
+  <div class='field'>
+    <%= label_tag :parole %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class='actions'>
+    <%= submit_tag 'Pieslēgties' %>
+  </div>
+  <div class='actions'>
+    <%= link_to 'Izveidot lietotāju', signup_path %>
+  </div>
+<% end %>

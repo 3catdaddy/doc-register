@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nosaukums:</strong>
+  <%= @upload.title %>
+</p>
+
+<p>
+  <% if @upload.files.present? %>
+    <strong>Fails:</strong>
+    <% @upload.files.each do |upload| %>
+      <%= link_to "#{upload.blob.filename.to_s}", upload, download: ''%>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Apraksts:</strong>
+  <%= @upload.description %>
+</p>
+
+<%= link_to 'Labot', edit_upload_path(@upload), class: 'btn btn-warning' %>
+<td><%= link_to 'Dzēst', @upload, method: :delete, data: { confirm: 'Vai tiešām dzēst dokumentu?' },
+                class: 'btn btn-danger' %></td>
+<%= link_to 'Atgriezties', uploads_path, class: 'btn btn-outline-secondary'%>

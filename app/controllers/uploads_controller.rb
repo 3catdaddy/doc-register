@@ -62,7 +62,6 @@ class UploadsController < ApplicationController
   end
 
   def delete_file_attachment
-    binding.pry
     @file = ActiveStorage::Attachment.find(params[:id])
     @file.purge
     redirect_back(fallback_location: uploads_path)
